@@ -14,23 +14,13 @@ import {View, StyleSheet, Image, TouchableOpacity, Text} from 'react-native';
 
 export default function RandomScreen() {
     const [resImage, setResImage] = useState(null);
-    const [canGenerate, setCanGenerate] = useState(false);
+    const [canGenerate, setCanGenerate] = useState(true);
     const [secondsRemaining, setSecondsRemaining] = useState(0);
 
+    const APIShotsSaver = async (intTime) => {
+        setSecondsRemaining(intTime);
 
-    const getRandomPhoto = async () => {
-        if (!canGenerate) {
-            return null
-        }
-        const totalWaitingTime = 5;
-        const randomPhoto = await http.get("/photos/random", getParams);
-        setResImage(randomPhoto);
-        console.log(randomPhoto.data);
-
-        setCanGenerate(false);
-        setSecondsRemaining(totalWaitingTime);
-
-        let intervalCounterHelper = totalWaitingTime;
+        let intervalCounterHelper = intTime;
         const secondsInterval = await setInterval(() => {
             intervalCounterHelper -= 1;
             setSecondsRemaining(intervalCounterHelper);
@@ -40,8 +30,22 @@ export default function RandomScreen() {
         setTimeout(async () => {
             setCanGenerate(true);
             clearInterval(secondsInterval);
-        }, totalWaitingTime * 1000);
+        }, intTime * 1000);
+    };
 
+
+    const getRandomPhoto = async () => {
+        if (!canGenerate) {
+            return null
+        }
+        setCanGenerate(false);
+
+        const randomPhoto = await http.get("/photos/random", getParams);
+        setResImage(randomPhoto);
+        console.log(randomPhoto.data);
+
+        const totalWaitingTime = 10;
+        await APIShotsSaver(totalWaitingTime);
     };
 
     return (
@@ -55,7 +59,7 @@ export default function RandomScreen() {
                 <View pointerEvents="none">
                     {canGenerate ?
                         <FontAwesome.Button right={-5} backgroundColor="transparent" size={32} name="retweet"/> :
-                        <Text>{secondsRemaining}</Text>}
+                        <Text style={styles.buttonText}>{secondsRemaining}</Text>}
 
                 </View>
             </TouchableOpacity>
@@ -104,8 +108,9 @@ const styles = StyleSheet.create({
         right: 10,
         bottom: 30,
     },
+    counter: {},
     buttonText: {
-        color: '#fff',
+        color: colors.white,
         fontWeight: "600",
         fontSize: 18
     }
