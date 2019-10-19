@@ -18,17 +18,18 @@ const config = Platform.select({
 
 const bottomBarStyles = {
     activeTintColor: colors.secondary,
-    inactiveTintColor: 'white',
+    inactiveTintColor: colors.white,
     labelStyle: {
-        fontSize: 15,
+        fontSize: 17,
         fontWeight: "800",
         marginBottom: 15,
         backgroundColor: "#111",
-        padding: 5,
+        paddingTop: 2,
+        paddingBottom: 6,
     },
     style: {
         backgroundColor: colors.main,
-        height: 30,
+        height: 37,
 
     },
     showIcon: false,

@@ -14,26 +14,32 @@ import {View, StyleSheet, Image, TouchableOpacity, Text} from 'react-native';
 
 export default function RandomScreen() {
     const [resImage, setResImage] = useState(null);
-    const [canGenerate, setCanGenerate] = useState(true);
+    const [canGenerate, setCanGenerate] = useState(false);
     const [secondsRemaining, setSecondsRemaining] = useState(0);
-    const totalWaitingTime = 5;
+
 
     const getRandomPhoto = async () => {
         if (!canGenerate) {
             return null
         }
+        const totalWaitingTime = 5;
         const randomPhoto = await http.get("/photos/random", getParams);
         setResImage(randomPhoto);
         console.log(randomPhoto.data);
+
         setCanGenerate(false);
         setSecondsRemaining(totalWaitingTime);
-        setTimeout(() => {
+
+        let intervalCounterHelper = totalWaitingTime;
+        const secondsInterval = await setInterval(() => {
+            intervalCounterHelper -= 1;
+            setSecondsRemaining(intervalCounterHelper);
+            console.log(intervalCounterHelper);
+        }, 1000);
+
+        setTimeout(async () => {
             setCanGenerate(true);
-            const secondsInterval = setInterval(() => {
-                setSecondsRemaining(secondsRemaining - 1);
-                console.log("interval...")
-            }, 1000);
-            return clearInterval(secondsInterval);
+            clearInterval(secondsInterval);
         }, totalWaitingTime * 1000);
 
     };
@@ -75,7 +81,7 @@ RandomScreen.navigationOptions = {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: colors.mainDarker,
+        backgroundColor: colors.black,
         flex: 1,
         alignItems: 'center',
     },
@@ -86,7 +92,7 @@ const styles = StyleSheet.create({
     },
     button: {
         borderWidth: 1,
-        borderColor: '#ddd',
+        borderColor: colors.gray,
         alignSelf: 'flex-end',
         backgroundColor: colors.secondaryDarker,
         borderRadius: 50,
