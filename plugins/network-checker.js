@@ -1,13 +1,15 @@
 import axios from "axios";
 
-export default () => {
-
-    axios('http://google.com', {
+// Simply network connection checker
+export default async () => {
+    let isInternet = false;
+    await axios('http://www.google.com', {
         method: 'GET',
-    }).then((res) => {
-        console.log("then works");
-        console.log(res);
-    }). catch((error) => {
-        console.log(error);
-    })
+    }).then(() => {
+        console.log("Internet works");
+        isInternet = true;
+    }).catch((error) => {
+        console.log("Internet connection failed");
+    });
+    return isInternet
 }
