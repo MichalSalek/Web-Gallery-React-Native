@@ -12,6 +12,11 @@ import isInternet from './plugins/network-checker';
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
 
+
+  useEffect(() => {
+    isInternet();
+  }, []);
+
   if (!isLoadingComplete && !props.skipLoadingScreen) {
     return (
       <AppLoading

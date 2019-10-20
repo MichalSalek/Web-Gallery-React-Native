@@ -16,16 +16,14 @@ import {View, StyleSheet, Image, TouchableOpacity, Text} from 'react-native';
 export default function RandomScreen() {
     const [resImage, setResImage] = useState(null);
     const [canGenerate, setCanGenerate] = useState(true);
-    const [secondsRemaining, setSecondsRemaining] = useState(0);
 
-    useEffect(() => {
+    const totalWaitingTime = 10;
+    const [secondsRemaining, setSecondsRemaining] = useState(totalWaitingTime);
 
-    }, []);
+    const APIShotsSaver = async () => {
+        setSecondsRemaining(secondsRemaining);
 
-    const APIShotsSaver = async (intTime) => {
-        setSecondsRemaining(intTime);
-
-        let intervalCounterHelper = intTime;
+        let intervalCounterHelper = secondsRemaining;
         const secondsInterval = await setInterval(() => {
             intervalCounterHelper -= 1;
             setSecondsRemaining(intervalCounterHelper);
@@ -35,7 +33,8 @@ export default function RandomScreen() {
         setTimeout(async () => {
             setCanGenerate(true);
             clearInterval(secondsInterval);
-        }, intTime * 1000);
+            setSecondsRemaining(totalWaitingTime);
+        }, secondsRemaining * 1000);
     };
 
 
@@ -49,8 +48,7 @@ export default function RandomScreen() {
         setResImage(randomPhoto);
         console.log(randomPhoto.data);
 
-        const totalWaitingTime = 10;
-        await APIShotsSaver(totalWaitingTime);
+        await APIShotsSaver();
     };
 
     return (
@@ -60,12 +58,11 @@ export default function RandomScreen() {
                 style={styles.image}
                 source={{uri: resImage.data.urls.regular}}
             />}
-            <TouchableOpacity style={styles.button} onPress={getRandomPhoto}>
+            <TouchableOpacity style={[styles.button, {opacity: canGenerate ? 1 : 0.3}]} onPress={getRandomPhoto}>
                 <View pointerEvents="none">
                     {canGenerate ?
                         <FontAwesome.Button right={-5} backgroundColor="transparent" size={32} name="retweet"/> :
                         <Text style={styles.buttonText}>{secondsRemaining}</Text>}
-
                 </View>
             </TouchableOpacity>
         </View>
@@ -113,10 +110,13 @@ const styles = StyleSheet.create({
         right: 10,
         bottom: 30,
     },
-    counter: {},
+    lowOpacity: {
+        opacity: 0.4
+    },
     buttonText: {
         color: colors.white,
         fontWeight: "600",
-        fontSize: 18
+        fontSize: 18,
+
     }
 });

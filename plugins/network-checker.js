@@ -1,8 +1,13 @@
-import http from '../services/http.service';
+import axios from "axios";
+
 export default () => {
-   return http.get('https://google.com').then((res) => {
-        console.log(res)
+
+    axios('http://google.com', {
+        method: 'GET',
+    }).then((res) => {
+        console.log("then works");
+        console.log(res);
     }). catch((error) => {
-       console.log(error)
+        console.log(error);
     })
 }
