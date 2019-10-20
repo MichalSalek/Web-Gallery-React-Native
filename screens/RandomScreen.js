@@ -27,7 +27,6 @@ export default function RandomScreen() {
         const secondsInterval = await setInterval(() => {
             intervalCounterHelper -= 1;
             setSecondsRemaining(intervalCounterHelper);
-            console.log(intervalCounterHelper);
         }, 1000);
 
         setTimeout(async () => {
@@ -46,19 +45,17 @@ export default function RandomScreen() {
 
         const randomPhoto = await http.get("/photos/random", getParams).catch((error) => console.error(error));
         setResImage(randomPhoto);
-        console.log(randomPhoto.data);
 
         await APIShotsSaver();
     };
 
     return (
         <View style={styles.container}>
-
             {resImage && <Image
                 style={styles.image}
                 source={{uri: resImage.data.urls.regular}}
             />}
-            <TouchableOpacity style={[styles.button, {opacity: canGenerate ? 1 : 0.3}]} onPress={getRandomPhoto}>
+            <TouchableOpacity style={styles.button} onPress={getRandomPhoto}>
                 <View pointerEvents="none">
                     {canGenerate ?
                         <FontAwesome.Button right={-5} backgroundColor="transparent" size={32} name="retweet"/> :
@@ -110,13 +107,9 @@ const styles = StyleSheet.create({
         right: 10,
         bottom: 30,
     },
-    lowOpacity: {
-        opacity: 0.4
-    },
     buttonText: {
         color: colors.white,
         fontWeight: "600",
         fontSize: 18,
-
     }
 });
