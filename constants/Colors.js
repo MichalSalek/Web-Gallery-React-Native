@@ -4,6 +4,6 @@ export default {
     secondary: '#db9313',
     secondaryDarker: 'rgb(195,96,36)',
     white: '#eee',
-    black: '#111',
+    black: '#0a0a0a',
     gray: '#aaa'
 };

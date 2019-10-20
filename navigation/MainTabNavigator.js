@@ -23,7 +23,7 @@ const bottomBarStyles = {
         fontSize: 17,
         fontWeight: "800",
         marginBottom: 15,
-        backgroundColor: "#111",
+        backgroundColor: colors.black,
         paddingTop: 2,
         paddingBottom: 6,
     },

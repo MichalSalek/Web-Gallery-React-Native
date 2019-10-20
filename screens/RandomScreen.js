@@ -1,5 +1,5 @@
 // node_modules
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {FontAwesome} from '@expo/vector-icons';
 
 // Style
@@ -9,6 +9,7 @@ import colors from '../constants/Colors'
 import http from '../services/http.service'
 import getParams from '../environment/unsplash.params'
 
+
 // React native components
 import {View, StyleSheet, Image, TouchableOpacity, Text} from 'react-native';
 
@@ -16,6 +17,10 @@ export default function RandomScreen() {
     const [resImage, setResImage] = useState(null);
     const [canGenerate, setCanGenerate] = useState(true);
     const [secondsRemaining, setSecondsRemaining] = useState(0);
+
+    useEffect(() => {
+
+    }, []);
 
     const APIShotsSaver = async (intTime) => {
         setSecondsRemaining(intTime);
@@ -40,7 +45,7 @@ export default function RandomScreen() {
         }
         setCanGenerate(false);
 
-        const randomPhoto = await http.get("/photos/random", getParams);
+        const randomPhoto = await http.get("/photos/random", getParams).catch((error) => console.error(error));
         setResImage(randomPhoto);
         console.log(randomPhoto.data);
 
@@ -77,7 +82,7 @@ RandomScreen.navigationOptions = {
         color: colors.white,
         fontSize: 22,
         letterSpacing: 3,
-        backgroundColor: "#111",
+        backgroundColor: colors.black,
         borderRadius: 3,
         paddingHorizontal: 8,
     },
