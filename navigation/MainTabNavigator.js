@@ -79,9 +79,10 @@ SearchStack.navigationOptions = {
 SearchStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
+    SearchStack,
     RandomStack,
     HomeStack,
-    SearchStack,
+
 });
 
 tabNavigator.path = '';

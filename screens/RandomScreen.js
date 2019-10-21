@@ -9,33 +9,17 @@ import colors from '../constants/Colors'
 import http from '../services/http.service'
 import getParams from '../environment/unsplash.params'
 
+// Common
+import {totalWaitingTime} from "../constants/Other";
 
 // React native components
 import {View, StyleSheet, Image, TouchableOpacity, Text} from 'react-native';
+import {APIShotsSaver} from "../plugins/APISaver";
 
 export default function RandomScreen() {
     const [resImage, setResImage] = useState(null);
     const [canGenerate, setCanGenerate] = useState(true);
-
-    const totalWaitingTime = 10;
     const [secondsRemaining, setSecondsRemaining] = useState(totalWaitingTime);
-
-    const APIShotsSaver = async () => {
-        setSecondsRemaining(secondsRemaining);
-
-        let intervalCounterHelper = secondsRemaining;
-        const secondsInterval = await setInterval(() => {
-            intervalCounterHelper -= 1;
-            setSecondsRemaining(intervalCounterHelper);
-        }, 1000);
-
-        setTimeout(async () => {
-            setCanGenerate(true);
-            clearInterval(secondsInterval);
-            setSecondsRemaining(totalWaitingTime);
-        }, secondsRemaining * 1000);
-    };
-
 
     const getRandomPhoto = async () => {
         if (!canGenerate) {
@@ -46,7 +30,7 @@ export default function RandomScreen() {
         const randomPhoto = await http.get("/photos/random", getParams).catch((error) => console.error(error));
         setResImage(randomPhoto);
 
-        await APIShotsSaver();
+        await APIShotsSaver(setSecondsRemaining, secondsRemaining, setCanGenerate);
     };
 
     return (

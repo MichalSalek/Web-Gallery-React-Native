@@ -1,6 +1,6 @@
 export default {
     main: '#1D4AB3',
-    mainDarker: '#010817',
+    mainDarker: '#010238',
     secondary: '#db9313',
     secondaryDarker: 'rgb(195,96,36)',
     white: '#eee',

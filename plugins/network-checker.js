@@ -6,10 +6,9 @@ export default async () => {
     await axios('http://www.google.com', {
         method: 'GET',
     }).then(() => {
-        console.log("Internet works");
         isInternet = true;
     }).catch((error) => {
-        console.log("Internet connection failed");
+        isInternet = false;
     });
     return isInternet
 }

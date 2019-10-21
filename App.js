@@ -12,7 +12,7 @@ import isInternetChecker from './plugins/network-checker';
 // Error boundary
 import NoInternetErrorBoundary from "./components/NoInternetErrorBoundary";
 
-export default function App(props) {
+export default (props) => {
     const [isLoadingComplete, setLoadingComplete] = useState(false);
     const [isInternetConnection, setIsInternetConnection] = useState(true);
 
