@@ -29,8 +29,9 @@ export default function RandomScreen() {
         }
         setCanGenerate(false);
 
-        const randomPhoto = await http.get("/photos/random", getParams).catch((error) => console.error(error));
-        setResImage(randomPhoto);
+        const randomPhoto = await http.get(`/search/photos?page=1&query=${textInputValue}`, getParams).catch((error) => console.error(error));
+        // setResImage(randomPhoto);
+        console.log(randomPhoto)
 
         await APIShotsSaver(setSecondsRemaining, secondsRemaining, setCanGenerate);
     };
