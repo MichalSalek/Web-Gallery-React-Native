@@ -46,10 +46,13 @@ export default function RandomScreen() {
                 style={styles.image}
                 source={{uri: resImage.data.urls.regular}}
             />}
-            <TouchableOpacity style={[styles.button, {backgroundColor: coloredBarColorInverted, borderColor: coloredBarColor}]} onPress={getRandomPhoto}>
+            <TouchableOpacity
+                style={[styles.button, {backgroundColor: coloredBarColorInverted, borderColor: coloredBarColor}]}
+                onPress={getRandomPhoto}>
                 <View pointerEvents="none">
                     {canGenerate ?
-                        <FontAwesome.Button right={-5} backgroundColor="transparent" color={coloredBarColor} size={32} name="retweet"/> :
+                        <FontAwesome.Button right={-5} backgroundColor="transparent" color={coloredBarColor} size={32}
+                                            name="retweet"/> :
                         <Text style={[styles.buttonText, {color: coloredBarColor}]}>{secondsRemaining}</Text>}
                 </View>
             </TouchableOpacity>
