@@ -1,5 +1,5 @@
 const prod = {
-    apiUrl: '',
+    apiUrl: 'https://api.unsplash.com/',
 }
 const dev = {
     apiUrl: 'https://api.unsplash.com/',

@@ -20,7 +20,7 @@ export default (props) => {
     useEffect(() => {
         const networkChecker = setInterval(async () => {
             setIsInternetConnection(await isInternetChecker());
-        }, 10000);
+        }, 5000);
 
         // Unsubscription on unmount
         return () => clearInterval(networkChecker);
@@ -37,7 +37,7 @@ export default (props) => {
     } else {
         return (
             <View style={styles.container}>
-                <StatusBar hidden={true}/>
+                {/*<StatusBar hidden={true}/>*/}
                 {Platform.OS === 'ios' && <StatusBar barStyle="default"/>}
                 {isInternetConnection ? <AppNavigator/> : <NoInternetErrorBoundary/>}
             </View>
@@ -48,8 +48,6 @@ export default (props) => {
 async function loadResourcesAsync() {
     await Promise.all([
         Asset.loadAsync([
-            require('./assets/images/robot-dev.png'),
-            require('./assets/images/robot-prod.png'),
         ]),
     ]);
 }

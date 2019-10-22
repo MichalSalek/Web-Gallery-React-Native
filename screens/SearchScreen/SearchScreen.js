@@ -18,7 +18,7 @@ import {totalWaitingTime} from "../../common/Constants";
 import {s} from "./search-style";
 
 // React native components
-import {View, TouchableOpacity, Text, TextInput, ScrollView, FlatList} from 'react-native';
+import {View, TouchableOpacity, Text, TextInput, ScrollView, FlatList, Keyboard} from 'react-native';
 
 // Child
 import {SinglePhotoThumb} from "./SinglePhotoThumb";
@@ -38,6 +38,7 @@ export default function RandomScreen() {
     const [noMorePictures, setNoMorePictures] = useState(true);
     const [chosenPhoto, setChosenPhoto] = useState(null);
     const [filledInput, setFilledInput] = useState(false);
+    const [showSearchBox, setShowSearchBox] = useState(false);
 
     useEffect(() => {
         setFilledInput(!!textInputValue);
@@ -47,8 +48,10 @@ export default function RandomScreen() {
         if (!canGenerate || !filledInput) {
             return null
         }
+        setShowSearchBox(false);
         setNoMorePictures(false);
         setCanGenerate(false);
+        Keyboard.dismiss();
 
         const rawResponse = await http.get(`/search/photos?page=1&per_page=30&orientation=portrait&query=${textInputValue}`, getParams).catch((error) => console.error(error));
 
@@ -111,27 +114,31 @@ export default function RandomScreen() {
                             (<TouchableOpacity onPress={loadMorePhotos} style={s.buttonMore}>
                                 {canGenerate ?
                                     <Text style={s.buttonMoreText}>Load more...</Text> :
-                                    <Text style={s.buttonMoreText}>{secondsRemaining}</Text>}
+                                    <Text style={s.buttonMoreText}>Wait {secondsRemaining} seconds...</Text>}
                             </TouchableOpacity>)}
                     </View>
                 ) : <Text style={{marginTop: 50, color: colors.white, paddingLeft: dimensions.window.width / 5}}>We are
                     looking for...</Text>}
             </ScrollView>
-            <View style={s.searchContainer}>
+            {showSearchBox ? (<View style={s.searchContainer}>
                 <TextInput
                     style={s.textInput}
                     onChangeText={text => setTextInputValue(text)}
                     value={textInputValue}
+                    autoFocus={true}
+                    onSubmitEditing={searchForPhotos}
                     placeholder={"Car, nature, colors..."}
                 />
-            </View>
+                <TouchableOpacity style={s.buttonSearchAction}
+                                  onPress={searchForPhotos}>
+                    <Text style={s.buttonText}>  {canGenerate ? "SEARCH" : secondsRemaining}</Text>
+                </TouchableOpacity>
+            </View>) : null}
             <TouchableOpacity style={[s.button, commonStyles.circleButton]}
-                              onPress={searchForPhotos}>
+                              onPress={() => setShowSearchBox(!showSearchBox)}>
                 <View pointerEvents="none">
-                    {canGenerate ?
-                        <FontAwesome.Button right={-5} backgroundColor="transparent" size={22}
-                                            name="search"/> :
-                        <Text style={s.buttonText}>{secondsRemaining}</Text>}
+                    <FontAwesome.Button right={-5} backgroundColor="transparent" size={22}
+                                        name="search"/>
                 </View>
             </TouchableOpacity>
         </View>
@@ -142,7 +149,7 @@ RandomScreen.navigationOptions = {
     title: "Look for specific photos",
     headerStyle: {
         backgroundColor: colors.main,
-        height: 8,
+        height: 25,
     },
     headerTitleStyle: {
         color: colors.white,

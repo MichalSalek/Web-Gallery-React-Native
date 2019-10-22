@@ -25,10 +25,12 @@ export const s = StyleSheet.create({
     searchContainer: {
         flexDirection: "row",
         width: dimensions.window.width,
-        height: 35,
+        height: 200,
         position: 'absolute',
-        bottom: 11,
-        paddingHorizontal: dimensions.window.width / 5,
+        bottom: dimensions.window.height / 2,
+        paddingHorizontal: dimensions.window.width / 8,
+        paddingVertical: 80,
+        backgroundColor: 'rgba(0,0,0,0.8)'
     },
     textInput: {
         flex: 1,
@@ -40,6 +42,13 @@ export const s = StyleSheet.create({
         paddingVertical: 2,
         fontSize: 20,
         fontWeight: '600',
+    },
+    buttonSearchAction: {
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: colors.main,
+        paddingHorizontal: 5,
+        width: 100
     },
     button: {
         position: 'absolute',
@@ -61,7 +70,7 @@ export const s = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         marginTop: 50,
-        width: dimensions.window.width / 3,
+        width: dimensions.window.width / 2,
         paddingVertical: 5,
         borderRadius: 5
     },
@@ -99,7 +108,7 @@ export const s = StyleSheet.create({
         height: "100%",
     },
     fullImageBottomSection: {
-        height: 210,
+        height: 230,
         backgroundColor: colors.black,
         alignItems: 'flex-end',
         justifyContent: 'space-between'
@@ -111,7 +120,7 @@ export const s = StyleSheet.create({
         marginTop: 4
     },
     fullImageButtons: {
-        marginBottom: 80,
+        marginBottom: 100,
         flexDirection: 'row'
     }
 });

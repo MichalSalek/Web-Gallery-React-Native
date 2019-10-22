@@ -24,6 +24,8 @@ export default function RandomScreen() {
         {1: "Author's name"},
         {1: "Author's Instagram profile"},
         {1: '"Loading more" button'},
+        {1: 'Search modal'},
+        {1: 'Starts searching after text input editing'},
         {1: 'Getting base color from Random Picture for colored bars'},
         {1: 'Color randomizer'},
         {1: 'Color inverter'},
@@ -40,7 +42,7 @@ export default function RandomScreen() {
 
             setColoredBarColor(newColor);
             setColoredBarColorInverted(invertedColor);
-        }, 2000);
+        }, 3500);
 
         return () => {
             clearInterval(randomizeColors)
@@ -51,8 +53,11 @@ export default function RandomScreen() {
         <View style={s.container}>
             <View
                 style={[s.topBar, {backgroundColor: coloredBarColor}]}/>
+            <View
+                style={[s.bottomBar, {backgroundColor: coloredBarColorInverted}]}/>
+
             <View style={s.textContainer}>
-                <Text style={s.heading}>Solutions and features of this application</Text>
+                <Text style={s.heading}>Solutions and features</Text>
                 <FlatList
                     style={{marginTop: 20}}
                     data={featuresList}
@@ -63,6 +68,8 @@ export default function RandomScreen() {
             </View>
             <View
                 style={[s.bottomBar, {backgroundColor: coloredBarColorInverted}]}/>
+            <View
+                style={[s.topBar, {backgroundColor: coloredBarColor}]}/>
         </View>
     );
 }
@@ -71,7 +78,7 @@ RandomScreen.navigationOptions = {
     title: "App dev info",
     headerStyle: {
         backgroundColor: colors.main,
-        height: 8,
+        height: 25,
     },
     headerTitleStyle: {
         color: colors.white,
@@ -94,16 +101,18 @@ const s = StyleSheet.create({
         paddingVertical: 50
     },
     heading: {
-        fontSize: 30,
+        fontSize: 20,
         color: colors.white,
 
     },
     bottomBar: {
         width: dimensions.window.width,
-        height: 13,
+        height: 10,
+        marginVertical: 10
     },
     topBar: {
         width: dimensions.window.width,
-        height: 4,
+        height: 10,
+        marginVertical: 6
     }
 });

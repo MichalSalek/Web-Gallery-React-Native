@@ -32,8 +32,10 @@ export default function RandomScreen() {
 
         const randomPhoto = await http.get("/photos/random", getParams).catch((error) => console.error(error));
         setResImage(randomPhoto);
-        setColoredBarColor(randomPhoto.data.color);
-        setColoredBarColorInverted(invertColor(randomPhoto.data.color));
+        if (randomPhoto.data) {
+            setColoredBarColor(randomPhoto.data.color);
+            setColoredBarColorInverted(invertColor(randomPhoto.data.color));
+        }
         await APIShotsSaver(setSecondsRemaining, secondsRemaining, setCanGenerate);
     };
 
@@ -41,10 +43,10 @@ export default function RandomScreen() {
         <View style={s.container}>
             <View
                 style={[s.topBar, {backgroundColor: coloredBarColor}]}/>
-            {resImage && <Image
+            {resImage && (<Image
                 style={s.image}
                 source={{uri: resImage.data.urls.regular}}
-            />}
+            />)}
             <TouchableOpacity
                 style={[s.button, commonStyles.circleButton, {
                     backgroundColor: coloredBarColorInverted,
@@ -68,7 +70,7 @@ RandomScreen.navigationOptions = {
     title: "Let's random!",
     headerStyle: {
         backgroundColor: colors.main,
-        height: 8,
+        height: 25,
     },
     headerTitleStyle: {
         color: colors.white,
