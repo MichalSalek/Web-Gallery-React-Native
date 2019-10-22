@@ -96,7 +96,17 @@ export const s = StyleSheet.create({
         width: dimensions.window.width,
         height: "100%",
     },
-    fullImageButtons: {
+    fullImageBottomSection: {
+        height: 200,
+        backgroundColor: colors.black,
+        justifyContent: 'flex-start',
+        alignItems: 'center',
 
-    }
+    },
+    fullImageTitle: {
+        fontSize: 22,
+        color: colors.white,
+        paddingVertical: 6,
+    },
+    fullImageButtons: {}
 });

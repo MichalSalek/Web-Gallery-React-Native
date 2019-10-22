@@ -7,6 +7,9 @@ import {Image, TouchableHighlight, View, Text, TouchableOpacity} from "react-nat
 // Icons
 import {FontAwesome} from "@expo/vector-icons";
 
+// Common
+import {commonStyles} from "../../common/Style";
+
 export const SinglePhotoFull = ({data, s, pressHandler}) => {
 
     return (<View style={s.fullImageContainer}>
@@ -16,10 +19,13 @@ export const SinglePhotoFull = ({data, s, pressHandler}) => {
                 source={{uri: data.urls.full}}
             />
         </TouchableHighlight>
-        <View style={s.fullImageButtons}>
-            <TouchableOpacity style={s.button}>
-                    <FontAwesome.Button right={-5} backgroundColor="transparent" size={22} name="search"/>
-            </TouchableOpacity>
+        <View style={s.fullImageBottomSection}>
+            <Text style={s.fullImageTitle}>{data.description}</Text>
+            <View style={s.fullImageButtons}>
+                <TouchableOpacity style={commonStyles.circleButton}>
+                    <FontAwesome.Button right={-5} backgroundColor="transparent" size={22} name="download"/>
+                </TouchableOpacity>
+            </View>
         </View>
     </View>)
 };
