@@ -15,10 +15,13 @@ import {APIShotsSaver} from "../../plugins/APISaver"
 import {totalWaitingTime} from "../../constants/Other";
 
 // Style 
-import { s } from "./style";
+import {s} from "./style";
 
 // React native components
-import {View, Image, TouchableOpacity, Text, TextInput, ScrollView, FlatList} from 'react-native';
+import {View, TouchableOpacity, Text, TextInput, ScrollView, FlatList} from 'react-native';
+
+// Child
+import {SinglePhoto} from "./single-photo";
 
 import realResponse from '../../helpers/search-real-response'
 
@@ -81,10 +84,7 @@ export default function RandomScreen() {
                                 contentContainerStyle={s.list}
                                 data={el}
                                 keyExtractor={(item, index) => index.toString()}
-                                renderItem={({item}) => (<Image
-                                    style={s.thumb}
-                                    source={{uri: item.urls.thumb}}
-                                />)}
+                                renderItem={({item}) => (<SinglePhoto data={item} s={s}/>)}
                             />))
                         }
                         {noMorePictures ? (<View style={s.noMore}>
