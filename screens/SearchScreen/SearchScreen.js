@@ -37,9 +37,14 @@ export default function RandomScreen() {
     const [totalPages, setTotalPages] = useState("1");
     const [noMorePictures, setNoMorePictures] = useState(false);
     const [chosenPhoto, setChosenPhoto] = useState(null);
+    const [filledInput, setFilledInput] = useState(false);
+
+    useEffect(() => {
+        setFilledInput(!!textInputValue);
+    }, [textInputValue]);
 
     const searchForPhotos = async () => {
-        if (!canGenerate) {
+        if (!canGenerate || !filledInput) {
             return null
         }
         setNoMorePictures(false);
@@ -85,7 +90,7 @@ export default function RandomScreen() {
     const setFullScreenImage = (imgData) => setChosenPhoto(imgData);
 
     return (<View style={s.container}>
-            {chosenPhoto && <SinglePhotoFull data={chosenPhoto} s={s} pressHandler={setFullScreenImage} />}
+            {chosenPhoto && <SinglePhotoFull data={chosenPhoto} s={s} pressHandler={setFullScreenImage}/>}
             <ScrollView>
                 {picturesData ? (
                     <View style={s.picturesContainer}>
@@ -117,9 +122,11 @@ export default function RandomScreen() {
                     style={s.textInput}
                     onChangeText={text => setTextInputValue(text)}
                     value={textInputValue}
+                    placeholder={"Car, nature, colors..."}
                 />
             </View>
-            <TouchableOpacity style={[s.button, commonStyles.circleButton]} onPress={searchForPhotos}>
+            <TouchableOpacity style={[s.button, commonStyles.circleButton]}
+                              onPress={searchForPhotos}>
                 <View pointerEvents="none">
                     {canGenerate ?
                         <FontAwesome.Button right={-5} backgroundColor="transparent" size={22}
