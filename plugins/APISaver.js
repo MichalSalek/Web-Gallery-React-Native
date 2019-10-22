@@ -1,4 +1,4 @@
-import {totalWaitingTime} from "../constants/Other";
+import {totalWaitingTime} from "../common/Constants";
 
 export const APIShotsSaver = async (secondsSetter, secondsRemaining, canGenerateSetter) => {
     secondsSetter(secondsRemaining);

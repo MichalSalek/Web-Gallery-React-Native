@@ -3,8 +3,8 @@ import React, {useState, useEffect} from 'react';
 import {FontAwesome} from '@expo/vector-icons';
 
 // Constants
-import colors from '../../constants/Colors'
-import dimensions from '../../constants/Layout';
+import colors from '../../common/Colors'
+import dimensions from '../../common/Layout';
 
 // Service
 import http from '../../services/http.service'
@@ -12,10 +12,10 @@ import getParams from '../../environment/unsplash.params'
 
 // Common
 import {APIShotsSaver} from "../../plugins/APISaver"
-import {totalWaitingTime} from "../../constants/Other";
+import {totalWaitingTime} from "../../common/Constants";
 
 // Style 
-import {s} from "./style";
+import {s} from "./search-style";
 
 // React native components
 import {View, TouchableOpacity, Text, TextInput, ScrollView, FlatList, Image} from 'react-native';
@@ -25,6 +25,7 @@ import {SinglePhotoThumb} from "./SinglePhotoThumb";
 
 import realResponse from '../../helpers/search-real-response'
 import {SinglePhotoFull} from "./SinglePhotoFull";
+import {commonStyles} from "../../common/Style";
 
 export default function RandomScreen() {
 
@@ -116,7 +117,7 @@ export default function RandomScreen() {
                     value={textInputValue}
                 />
             </View>
-            <TouchableOpacity style={s.button} onPress={searchForPhotos}>
+            <TouchableOpacity style={[s.button, commonStyles.circleButton]} onPress={searchForPhotos}>
                 <View pointerEvents="none">
                     {canGenerate ?
                         <FontAwesome.Button right={-5} backgroundColor="transparent" size={22}

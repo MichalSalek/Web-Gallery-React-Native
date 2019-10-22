@@ -9,7 +9,7 @@ import RandomScreen from '../screens/RandomScreen';
 import SearchScreen from '../screens/SearchScreen/SearchScreen';
 
 // Style
-import colors from '../constants/Colors'
+import colors from '../common/Colors'
 
 const config = Platform.select({
     web: {headerMode: 'screen'},

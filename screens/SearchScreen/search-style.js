@@ -1,6 +1,6 @@
 import {StyleSheet} from "react-native";
-import colors from "../../constants/Colors";
-import dimensions from "../../constants/Layout";
+import colors from "../../common/Colors";
+import dimensions from "../../common/Layout";
 
 export const s = StyleSheet.create({
     container: {
@@ -42,16 +42,7 @@ export const s = StyleSheet.create({
         fontWeight: '600',
     },
     button: {
-        borderWidth: 1,
-        borderColor: colors.gray,
-        alignSelf: 'flex-end',
-        backgroundColor: colors.mainDarker,
-        borderRadius: 50,
         position: 'absolute',
-        width: 70,
-        height: 70,
-        alignItems: 'center',
-        justifyContent: 'center',
         right: 10,
         bottom: 30,
     },
@@ -90,12 +81,22 @@ export const s = StyleSheet.create({
         padding: 5,
 
     },
-    fullImage: {
+    fullImageContainer: {
         width: dimensions.window.width,
         height: dimensions.window.height,
         position: 'absolute',
         top: 0,
         left: 0,
         zIndex: 10
+    },
+    fullImageBox: {
+        flex: 1,
+    },
+    fullImage: {
+        width: dimensions.window.width,
+        height: "100%",
+    },
+    fullImageButtons: {
+
     }
 });

@@ -2,21 +2,20 @@
 import React, {useState, useEffect} from 'react';
 import {FontAwesome} from '@expo/vector-icons';
 
-// Constants
-import colors from '../constants/Colors'
-import dimensions from '../constants/Layout';
-
 // Service
 import http from '../services/http.service'
 import getParams from '../environment/unsplash.params'
 
 // Common
-import {totalWaitingTime} from "../constants/Other";
+import {totalWaitingTime} from "../common/Constants";
+import colors from '../common/Colors'
+import dimensions from '../common/Layout';
 import {invertColor} from "../plugins/invert-color";
 
 // React native components
 import {View, StyleSheet, Image, TouchableOpacity, Text} from 'react-native';
 import {APIShotsSaver} from "../plugins/APISaver";
+import {commonStyles} from "../common/Style";
 
 export default function RandomScreen() {
     const [resImage, setResImage] = useState(null);
@@ -39,25 +38,28 @@ export default function RandomScreen() {
     };
 
     return (
-        <View style={styles.container}>
+        <View style={s.container}>
             <View
-                style={[styles.topBar, {backgroundColor: coloredBarColor}]}/>
+                style={[s.topBar, {backgroundColor: coloredBarColor}]}/>
             {resImage && <Image
-                style={styles.image}
+                style={s.image}
                 source={{uri: resImage.data.urls.regular}}
             />}
             <TouchableOpacity
-                style={[styles.button, {backgroundColor: coloredBarColorInverted, borderColor: coloredBarColor}]}
+                style={[s.button, commonStyles.circleButton, {
+                    backgroundColor: coloredBarColorInverted,
+                    borderColor: coloredBarColor
+                }]}
                 onPress={getRandomPhoto}>
                 <View pointerEvents="none">
                     {canGenerate ?
                         <FontAwesome.Button right={-5} backgroundColor="transparent" color={coloredBarColor} size={22}
                                             name="retweet"/> :
-                        <Text style={[styles.buttonText, {color: coloredBarColor}]}>{secondsRemaining}</Text>}
+                        <Text style={[s.buttonText, {color: coloredBarColor}]}>{secondsRemaining}</Text>}
                 </View>
             </TouchableOpacity>
             <View
-                style={[styles.bottomBar, {backgroundColor: coloredBarColorInverted}]}/>
+                style={[s.bottomBar, {backgroundColor: coloredBarColorInverted}]}/>
         </View>
     );
 }
@@ -78,7 +80,7 @@ RandomScreen.navigationOptions = {
     },
 };
 
-const styles = StyleSheet.create({
+const s = StyleSheet.create({
     container: {
         backgroundColor: colors.black,
         flex: 1,
@@ -91,16 +93,7 @@ const styles = StyleSheet.create({
         height: "100%"
     },
     button: {
-        borderWidth: 1,
-        borderColor: colors.gray,
-        alignSelf: 'flex-end',
-        backgroundColor: colors.secondaryDarker,
-        borderRadius: 50,
         position: 'absolute',
-        width: 70,
-        height: 70,
-        alignItems: 'center',
-        justifyContent: 'center',
         right: 10,
         bottom: 30,
     },
