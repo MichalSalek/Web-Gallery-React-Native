@@ -1,5 +1,5 @@
 // node_modules
-import React, {useState} from 'react';
+import React from 'react';
 
 // React native components
 import {Image, TouchableHighlight, View, Text, TouchableOpacity} from "react-native";
