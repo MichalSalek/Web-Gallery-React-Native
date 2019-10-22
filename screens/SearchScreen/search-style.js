@@ -14,12 +14,11 @@ export const s = StyleSheet.create({
     },
     list: {
         marginTop: 22,
-
         alignItems: 'center',
     },
     thumb: {
         width: dimensions.window.width / 3 - 10,
-        height: dimensions.window.height / 5,
+        height: dimensions.window.height / 5 + 2,
         marginHorizontal: 5,
         marginVertical: 5,
     },
@@ -28,8 +27,8 @@ export const s = StyleSheet.create({
         width: dimensions.window.width,
         height: 30,
         position: 'absolute',
-        bottom: 13,
-        paddingHorizontal: dimensions.window.width / 4,
+        bottom: 8,
+        paddingHorizontal: dimensions.window.width / 5,
     },
     textInput: {
         flex: 1,
@@ -87,7 +86,8 @@ export const s = StyleSheet.create({
         position: 'absolute',
         top: 0,
         left: 0,
-        zIndex: 10
+        zIndex: 10,
+
     },
     fullImageBox: {
         flex: 1,
@@ -97,16 +97,19 @@ export const s = StyleSheet.create({
         height: "100%",
     },
     fullImageBottomSection: {
-        height: 200,
+        height: 210,
         backgroundColor: colors.black,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
+        alignItems: 'flex-end',
+        justifyContent: 'space-between'
+    },
 
-    },
     fullImageTitle: {
-        fontSize: 22,
+        fontSize: 18,
         color: colors.white,
-        paddingVertical: 6,
+        marginTop: 4
     },
-    fullImageButtons: {}
+    fullImageButtons: {
+        marginBottom: 80,
+        flexDirection: 'row'
+    }
 });

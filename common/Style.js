@@ -12,5 +12,6 @@ export const commonStyles = StyleSheet.create({
         height: 70,
         alignItems: 'center',
         justifyContent: 'center',
+        marginLeft: 10
     }
 });

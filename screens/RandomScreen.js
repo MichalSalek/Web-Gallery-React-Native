@@ -72,7 +72,7 @@ RandomScreen.navigationOptions = {
     },
     headerTitleStyle: {
         color: colors.white,
-        fontSize: 22,
+        fontSize: 20,
         letterSpacing: 3,
         backgroundColor: colors.black,
         borderRadius: 3,

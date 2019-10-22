@@ -48,8 +48,14 @@ export default function RandomScreen() {
         const rawResponse = await http.get(`/search/photos?page=1&per_page=30&orientation=portrait&query=${textInputValue}`, getParams).catch((error) => console.error(error));
 
         const picturesData = rawResponse.data.results;
+
         setTotalPages(String(rawResponse.data.total_pages));
         setPicturesData([picturesData]);
+
+        if (picturesData.length === 0) {
+            setTotalPages(0);
+            setNoMorePictures(true);
+        }
 
         if (String(rawResponse.data.total_pages) === "1") {
             setNoMorePictures(true);
@@ -76,11 +82,7 @@ export default function RandomScreen() {
         await APIShotsSaver(setSecondsRemaining, secondsRemaining, setCanGenerate);
     };
 
-    const setFullScreenImage = (imgData) => {
-        console.log(imgData);
-        setChosenPhoto(imgData);
-
-    };
+    const setFullScreenImage = (imgData) => setChosenPhoto(imgData);
 
     return (<View style={s.container}>
             {chosenPhoto && <SinglePhotoFull data={chosenPhoto} s={s} pressHandler={setFullScreenImage} />}
@@ -137,7 +139,7 @@ RandomScreen.navigationOptions = {
     },
     headerTitleStyle: {
         color: colors.white,
-        fontSize: 22,
+        fontSize: 20,
         letterSpacing: 3,
         backgroundColor: colors.black,
         borderRadius: 3,
