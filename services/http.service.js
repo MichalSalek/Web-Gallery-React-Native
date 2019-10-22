@@ -5,17 +5,8 @@ import axios from 'axios'
 import {env} from '../environment/environment'
 
 export class HttpService {
-    headers = {}
-
-    // setRESTHeaders = () => {
-    //     this.headers = {
-    //         Accept: 'text/html,application/xhtml+xml,application/json,application/xml;q=0.9,*/*;q=0.8',
-    //         'Content-Type': 'application/json',
-    //     }
-    // }
 
     get(url, params) {
-        // this.setRESTHeaders()
         return axios(env.apiUrl + url, {
             headers: {
                 ...params,
@@ -24,41 +15,41 @@ export class HttpService {
         })
     }
 
-    post(url, data) {
+    post(url, data, params) {
         return axios(env.apiUrl + url, {
             data,
             headers: {
-                ...this.headers,
+                ...params,
             },
             method: 'POST',
         })
     }
 
-    put(url, data) {
+    put(url, data, params) {
         return axios(env.apiUrl + url, {
             data,
             headers: {
-                ...this.headers,
+                ...params,
             },
             method: 'PUT',
         })
     }
 
-    patch(url, data) {
+    patch(url, data, params) {
         return axios(env.apiUrl + url, {
             data,
             headers: {
-                ...this.headers,
+                ...params,
             },
             method: 'PATCH',
         })
     }
 
-    delete(url, data) {
+    delete(url, data, params) {
         return axios(env.apiUrl + url, {
             data,
             headers: {
-                ...this.headers,
+                ...params,
             },
             method: 'DELETE',
         })

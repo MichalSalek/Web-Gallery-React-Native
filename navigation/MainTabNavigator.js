@@ -6,7 +6,7 @@ import {createStackNavigator, createBottomTabNavigator} from 'react-navigation';
 // Screens
 import HomeScreen from '../screens/HomeScreen';
 import RandomScreen from '../screens/RandomScreen';
-import SearchScreen from '../screens/SearchScreen';
+import SearchScreen from '../screens/SearchScreen/SearchScreen';
 
 // Style
 import colors from '../constants/Colors'
