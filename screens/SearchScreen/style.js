@@ -89,5 +89,13 @@ export const s = StyleSheet.create({
         fontSize: 18,
         padding: 5,
 
+    },
+    fullImage: {
+        width: dimensions.window.width,
+        height: dimensions.window.height,
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        zIndex: 10
     }
 });

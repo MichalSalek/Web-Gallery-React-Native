@@ -18,12 +18,13 @@ import {totalWaitingTime} from "../../constants/Other";
 import {s} from "./style";
 
 // React native components
-import {View, TouchableOpacity, Text, TextInput, ScrollView, FlatList} from 'react-native';
+import {View, TouchableOpacity, Text, TextInput, ScrollView, FlatList, Image} from 'react-native';
 
 // Child
-import {SinglePhoto} from "./single-photo";
+import {SinglePhotoThumb} from "./SinglePhotoThumb";
 
 import realResponse from '../../helpers/search-real-response'
+import {SinglePhotoFull} from "./SinglePhotoFull";
 
 export default function RandomScreen() {
 
@@ -34,6 +35,7 @@ export default function RandomScreen() {
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState("1");
     const [noMorePictures, setNoMorePictures] = useState(false);
+    const [chosenPhoto, setChosenPhoto] = useState(null);
 
     const searchForPhotos = async () => {
         if (!canGenerate) {
@@ -73,7 +75,14 @@ export default function RandomScreen() {
         await APIShotsSaver(setSecondsRemaining, secondsRemaining, setCanGenerate);
     };
 
+    const setFullScreenImage = (imgData) => {
+        console.log(imgData);
+        setChosenPhoto(imgData);
+
+    };
+
     return (<View style={s.container}>
+            {chosenPhoto && <SinglePhotoFull data={chosenPhoto} s={s} pressHandler={setFullScreenImage} />}
             <ScrollView>
                 {picturesData ? (
                     <View style={s.picturesContainer}>
@@ -84,7 +93,8 @@ export default function RandomScreen() {
                                 contentContainerStyle={s.list}
                                 data={el}
                                 keyExtractor={(item, index) => index.toString()}
-                                renderItem={({item}) => (<SinglePhoto data={item} s={s}/>)}
+                                renderItem={({item}) => (
+                                    <SinglePhotoThumb data={item} s={s} pressHandler={setFullScreenImage}/>)}
                             />))
                         }
                         {noMorePictures ? (<View style={s.noMore}>
