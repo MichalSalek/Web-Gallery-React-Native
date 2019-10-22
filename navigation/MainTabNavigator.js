@@ -4,7 +4,7 @@ import {Platform, Text} from 'react-native';
 import {createStackNavigator, createBottomTabNavigator} from 'react-navigation';
 
 // Screens
-import HomeScreen from '../screens/HomeScreen';
+import InfoScreen from '../screens/InfoScreen';
 import RandomScreen from '../screens/RandomScreen';
 import SearchScreen from '../screens/SearchScreen/SearchScreen';
 
@@ -35,20 +35,20 @@ const bottomBarStyles = {
     showIcon: false,
 };
 
-const HomeStack = createStackNavigator(
+const InfoStack = createStackNavigator(
     {
-        Home: HomeScreen,
+        Home: InfoScreen,
     },
     config
 );
 
-HomeStack.navigationOptions = {
+InfoStack.navigationOptions = {
 
-    tabBarLabel: 'Home',
+    tabBarLabel: 'Info',
     tabBarOptions: {...bottomBarStyles}
 };
 
-HomeStack.path = '';
+InfoStack.path = '';
 
 const RandomStack = createStackNavigator(
     {
@@ -81,8 +81,7 @@ SearchStack.path = '';
 const tabNavigator = createBottomTabNavigator({
     SearchStack,
     RandomStack,
-    HomeStack,
-
+    InfoStack,
 });
 
 tabNavigator.path = '';

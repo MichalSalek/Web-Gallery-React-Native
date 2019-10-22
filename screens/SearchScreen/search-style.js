@@ -13,7 +13,7 @@ export const s = StyleSheet.create({
         height: "100%",
     },
     list: {
-        marginTop: 22,
+        marginTop: 5,
         alignItems: 'center',
     },
     thumb: {
@@ -25,9 +25,9 @@ export const s = StyleSheet.create({
     searchContainer: {
         flexDirection: "row",
         width: dimensions.window.width,
-        height: 30,
+        height: 35,
         position: 'absolute',
-        bottom: 8,
+        bottom: 11,
         paddingHorizontal: dimensions.window.width / 5,
     },
     textInput: {
@@ -37,13 +37,14 @@ export const s = StyleSheet.create({
         borderStyle: "solid",
         backgroundColor: colors.white,
         paddingHorizontal: 10,
+        paddingVertical: 2,
         fontSize: 20,
         fontWeight: '600',
     },
     button: {
         position: 'absolute',
-        right: 10,
-        bottom: 30,
+        right: 0,
+        bottom: 11,
     },
     buttonText: {
         color: colors.white,
@@ -68,16 +69,16 @@ export const s = StyleSheet.create({
         backgroundColor: colors.secondaryDarker,
         alignItems: "center",
         justifyContent: "center",
-        marginTop: 50,
-        borderRadius: 5,
-        paddingHorizontal: 10,
-        paddingVertical: 5,
+        marginTop: 20,
+        borderRadius: 1,
+        paddingHorizontal: 8,
+        paddingVertical: 3,
     },
     buttonMoreText: {
         color: colors.white,
         fontWeight: '600',
-        fontSize: 18,
-        padding: 5,
+        fontSize: 16,
+        padding: 3,
 
     },
     fullImageContainer: {
@@ -91,6 +92,7 @@ export const s = StyleSheet.create({
     },
     fullImageBox: {
         flex: 1,
+        backgroundColor: colors.black
     },
     fullImage: {
         width: dimensions.window.width,
@@ -104,7 +106,7 @@ export const s = StyleSheet.create({
     },
 
     fullImageTitle: {
-        fontSize: 18,
+        fontSize: 14,
         color: colors.white,
         marginTop: 4
     },

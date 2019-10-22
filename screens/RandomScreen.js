@@ -95,7 +95,7 @@ const s = StyleSheet.create({
     button: {
         position: 'absolute',
         right: 10,
-        bottom: 30,
+        bottom: 55,
     },
     buttonText: {
         color: colors.white,

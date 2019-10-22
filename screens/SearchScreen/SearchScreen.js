@@ -18,12 +18,12 @@ import {totalWaitingTime} from "../../common/Constants";
 import {s} from "./search-style";
 
 // React native components
-import {View, TouchableOpacity, Text, TextInput, ScrollView, FlatList, Image} from 'react-native';
+import {View, TouchableOpacity, Text, TextInput, ScrollView, FlatList} from 'react-native';
 
 // Child
 import {SinglePhotoThumb} from "./SinglePhotoThumb";
 
-import realResponse from '../../helpers/search-real-response'
+import realResponse from '../../common/search-real-response'
 import {SinglePhotoFull} from "./SinglePhotoFull";
 import {commonStyles} from "../../common/Style";
 
@@ -35,7 +35,7 @@ export default function RandomScreen() {
     const [secondsRemaining, setSecondsRemaining] = useState(totalWaitingTime);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState("1");
-    const [noMorePictures, setNoMorePictures] = useState(false);
+    const [noMorePictures, setNoMorePictures] = useState(true);
     const [chosenPhoto, setChosenPhoto] = useState(null);
     const [filledInput, setFilledInput] = useState(false);
 
