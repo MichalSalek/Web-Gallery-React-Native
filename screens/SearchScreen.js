@@ -101,14 +101,15 @@ export default function RandomScreen() {
                     onChangeText={text => setTextInputValue(text)}
                     value={textInputValue}
                 />
-                <TouchableOpacity style={styles.button} onPress={searchForPhotos}>
-                    <View pointerEvents="none">
-                        {canGenerate ?
-                            <Text style={styles.buttonText}>Search</Text> :
-                            <Text style={styles.buttonText}>{secondsRemaining}</Text>}
-                    </View>
-                </TouchableOpacity>
             </View>
+            <TouchableOpacity style={styles.button} onPress={searchForPhotos}>
+                <View pointerEvents="none">
+                    {canGenerate ?
+                        <FontAwesome.Button right={-5} backgroundColor="transparent" size={22}
+                                            name="search"/> :
+                        <Text style={styles.buttonText}>{secondsRemaining}</Text>}
+                </View>
+            </TouchableOpacity>
         </View>
     );
 }
@@ -152,12 +153,11 @@ const styles = StyleSheet.create({
     },
     searchContainer: {
         flexDirection: "row",
-        width: dimensions.window.width - dimensions.window.width / 5,
+        width: dimensions.window.width,
         height: 30,
         position: 'absolute',
         bottom: 13,
-        left: dimensions.window.width / 10,
-        right: dimensions.window.width / 10
+        paddingHorizontal: dimensions.window.width / 4,
     },
     textInput: {
         flex: 1,
@@ -167,14 +167,21 @@ const styles = StyleSheet.create({
         backgroundColor: colors.white,
         paddingHorizontal: 10,
         fontSize: 20,
-        fontWeight: '600'
+        fontWeight: '600',
     },
     button: {
-        backgroundColor: colors.secondaryDarker,
-        width: 80,
-        alignItems: "center",
-        justifyContent: "center",
-        marginLeft: 1,
+        borderWidth: 1,
+        borderColor: colors.gray,
+        alignSelf: 'flex-end',
+        backgroundColor: colors.mainDarker,
+        borderRadius: 50,
+        position: 'absolute',
+        width: 70,
+        height: 70,
+        alignItems: 'center',
+        justifyContent: 'center',
+        right: 10,
+        bottom: 30,
     },
     buttonText: {
         color: colors.white,

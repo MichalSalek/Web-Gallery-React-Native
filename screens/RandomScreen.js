@@ -51,7 +51,7 @@ export default function RandomScreen() {
                 onPress={getRandomPhoto}>
                 <View pointerEvents="none">
                     {canGenerate ?
-                        <FontAwesome.Button right={-5} backgroundColor="transparent" color={coloredBarColor} size={32}
+                        <FontAwesome.Button right={-5} backgroundColor="transparent" color={coloredBarColor} size={22}
                                             name="retweet"/> :
                         <Text style={[styles.buttonText, {color: coloredBarColor}]}>{secondsRemaining}</Text>}
                 </View>
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
         height: "100%"
     },
     button: {
-        borderWidth: 2,
+        borderWidth: 1,
         borderColor: colors.gray,
         alignSelf: 'flex-end',
         backgroundColor: colors.secondaryDarker,
