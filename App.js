@@ -37,7 +37,7 @@ export default (props) => {
     } else {
         return (
             <View style={styles.container}>
-                {/*<StatusBar hidden={true}/>*/}
+                <StatusBar hidden={true}/>
                 {Platform.OS === 'ios' && <StatusBar barStyle="default"/>}
                 {isInternetConnection ? <AppNavigator/> : <NoInternetErrorBoundary/>}
             </View>

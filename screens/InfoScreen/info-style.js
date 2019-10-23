@@ -7,6 +7,7 @@ export const s = StyleSheet.create({
         backgroundColor: colors.black,
         flex: 1,
         justifyContent: 'space-between',
+        paddingBottom: 140
     },
     textContainer: {
         paddingHorizontal: 20,

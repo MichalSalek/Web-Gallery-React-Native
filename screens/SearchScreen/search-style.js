@@ -79,7 +79,7 @@ export const s = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         marginTop: 20,
-        borderRadius: 1,
+        borderRadius: 10,
         paddingHorizontal: 8,
         paddingVertical: 3,
     },
@@ -108,16 +108,19 @@ export const s = StyleSheet.create({
         height: "100%",
     },
     fullImageBottomSection: {
-        height: 230,
+        height: 250,
         backgroundColor: colors.black,
         alignItems: 'flex-end',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        paddingHorizontal: dimensions.window.width / 30
     },
-
+    fullImageTitleScroll: {
+        maxHeight: 55,
+    },
     fullImageTitle: {
         fontSize: 14,
         color: colors.white,
-        marginTop: 4
+        marginTop: 4,
     },
     fullImageButtons: {
         marginBottom: 100,

@@ -2,7 +2,7 @@
 import React from 'react';
 
 // React native components
-import {Image, TouchableHighlight, View, Text, TouchableOpacity} from "react-native";
+import {Image, TouchableHighlight, View, Text, TouchableOpacity, ScrollView} from "react-native";
 import * as WebBrowser from 'expo-web-browser';
 
 // Icons
@@ -40,7 +40,8 @@ export const SinglePhotoFull = ({data, s, pressHandler}) => {
         </TouchableHighlight>
 
         <View style={s.fullImageBottomSection}>
-            {data.description && <Text style={[s.fullImageTitle, {fontSize: 11}]}>{data.description}</Text>}
+             <View style={s.fullImageTitleScroll}><ScrollView><Text
+                style={[s.fullImageTitle, {fontSize: 11}]}>{!!data.description && data.description}</Text></ScrollView></View>
             <Text style={[s.fullImageTitle, {marginBottom: 4}]}>Author: {data.user.name}</Text>
             <View style={s.fullImageButtons}>
                 <TouchableOpacity style={commonStyles.circleButton} onPress={downloadFile}>

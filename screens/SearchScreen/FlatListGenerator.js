@@ -30,7 +30,8 @@ export const FlatListGenerator = ({
                     />))
                 }
                 {noMorePictures ? (<View style={s.noMore}>
-                        <Text style={s.buttonMoreText}>There is nothing to see anymore.</Text>
+                        <Text
+                            style={s.buttonMoreText}>{picturesData[0][0].hardcoded ? "Use the search button 👀" : "There is nothing to see anymore."}</Text>
                     </View>) :
                     (<TouchableOpacity onPress={loadMorePhotos} style={s.buttonMore}>
                         {canGenerate ?

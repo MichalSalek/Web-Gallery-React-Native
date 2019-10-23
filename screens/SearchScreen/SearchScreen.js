@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react';
 
 // Constants
 import colors from '../../common/Colors'
+
 // Service
 import http from '../../services/http.service'
 import getParams from '../../environment/unsplash.params'
@@ -71,6 +72,9 @@ export default function RandomScreen() {
     };
 
     const loadMorePhotos = async () => {
+        if (!canGenerate) {
+            return null
+        }
         if (totalPages === String(page)) {
             setNoMorePictures(true);
             return null;
