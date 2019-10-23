@@ -1,6 +1,5 @@
 // node_modules
 import React, {useState, useEffect} from 'react';
-import {FontAwesome} from '@expo/vector-icons';
 
 // Constants
 import colors from '../../common/Colors'
@@ -14,10 +13,9 @@ import {totalWaitingTime} from "../../common/Constants";
 
 // Style 
 import {s} from "./search-style";
-import {commonStyles} from "../../common/Style";
 
 // React native components
-import {View, TouchableOpacity, Text, TextInput, ScrollView, Keyboard} from 'react-native';
+import {View, Keyboard} from 'react-native';
 
 // Child
 import {FlatListGenerator} from "./FlatListGenerator";
@@ -28,10 +26,7 @@ import {SinglePhotoFull} from "./SinglePhotoFull";
 // Initial photos
 import realResponse from '../../common/search-real-response'
 
-
-
 export default function RandomScreen() {
-
     const [picturesData, setPicturesData] = useState([realResponse.results]);
     const [canGenerate, setCanGenerate] = useState(true);
     const [textInputValue, setTextInputValue] = useState("");

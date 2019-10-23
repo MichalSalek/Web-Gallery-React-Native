@@ -15,7 +15,6 @@ import {View} from 'react-native';
 // Child
 import {FeaturesListGenerator} from "./FeaturesListGenerator";
 
-
 export default function RandomScreen() {
     const [coloredBarColor, setColoredBarColor] = useState(colors.white);
     const [coloredBarColorInverted, setColoredBarColorInverted] = useState(colors.mainDarker);
@@ -40,7 +39,6 @@ export default function RandomScreen() {
                 style={[s.topBar, {backgroundColor: coloredBarColor}]}/>
             <View
                 style={[s.bottomBar, {backgroundColor: coloredBarColorInverted}]}/>
-
             <FeaturesListGenerator {...{s}} />
             <View
                 style={[s.bottomBar, {backgroundColor: coloredBarColorInverted}]}/>
