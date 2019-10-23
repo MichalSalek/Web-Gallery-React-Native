@@ -4,8 +4,6 @@ import {FontAwesome} from '@expo/vector-icons';
 
 // Constants
 import colors from '../../common/Colors'
-import dimensions from '../../common/Layout';
-
 // Service
 import http from '../../services/http.service'
 import getParams from '../../environment/unsplash.params'
@@ -16,16 +14,21 @@ import {totalWaitingTime} from "../../common/Constants";
 
 // Style 
 import {s} from "./search-style";
+import {commonStyles} from "../../common/Style";
 
 // React native components
-import {View, TouchableOpacity, Text, TextInput, ScrollView, FlatList, Keyboard} from 'react-native';
+import {View, TouchableOpacity, Text, TextInput, ScrollView, Keyboard} from 'react-native';
 
 // Child
-import {SinglePhotoThumb} from "./SinglePhotoThumb";
-
-import realResponse from '../../common/search-real-response'
+import {FlatListGenerator} from "./FlatListGenerator";
+import {SearchBoxGenerator} from "./SearchBoxGenerator";
+import {SearchButtonGenerator} from "./SearchButtonGenerator";
 import {SinglePhotoFull} from "./SinglePhotoFull";
-import {commonStyles} from "../../common/Style";
+
+// Initial photos
+import realResponse from '../../common/search-real-response'
+
+
 
 export default function RandomScreen() {
 
@@ -93,54 +96,30 @@ export default function RandomScreen() {
     const setFullScreenImage = (imgData) => setChosenPhoto(imgData);
 
     return (<View style={s.container}>
-            {chosenPhoto && <SinglePhotoFull data={chosenPhoto} s={s} pressHandler={setFullScreenImage}/>}
-            <ScrollView>
-                {picturesData ? (
-                    <View style={s.picturesContainer}>
-                        {
-                            picturesData.map((el, index) => (<FlatList
-                                key={index}
-                                numColumns={3}
-                                contentContainerStyle={s.list}
-                                data={el}
-                                keyExtractor={(item, index) => index.toString()}
-                                renderItem={({item}) => (
-                                    <SinglePhotoThumb data={item} s={s} pressHandler={setFullScreenImage}/>)}
-                            />))
-                        }
-                        {noMorePictures ? (<View style={s.noMore}>
-                                <Text style={s.buttonMoreText}>There is nothing to see anymore.</Text>
-                            </View>) :
-                            (<TouchableOpacity onPress={loadMorePhotos} style={s.buttonMore}>
-                                {canGenerate ?
-                                    <Text style={s.buttonMoreText}>Load more...</Text> :
-                                    <Text style={s.buttonMoreText}>Wait {secondsRemaining} seconds...</Text>}
-                            </TouchableOpacity>)}
-                    </View>
-                ) : <Text style={{marginTop: 50, color: colors.white, paddingLeft: dimensions.window.width / 5}}>We are
-                    looking for...</Text>}
-            </ScrollView>
-            {showSearchBox ? (<View style={s.searchContainer}>
-                <TextInput
-                    style={s.textInput}
-                    onChangeText={text => setTextInputValue(text)}
-                    value={textInputValue}
-                    autoFocus={true}
-                    onSubmitEditing={searchForPhotos}
-                    placeholder={"Car, nature, colors..."}
-                />
-                <TouchableOpacity style={s.buttonSearchAction}
-                                  onPress={searchForPhotos}>
-                    <Text style={s.buttonText}>  {canGenerate ? "SEARCH" : secondsRemaining}</Text>
-                </TouchableOpacity>
-            </View>) : null}
-            <TouchableOpacity style={[s.button, commonStyles.circleButton]}
-                              onPress={() => setShowSearchBox(!showSearchBox)}>
-                <View pointerEvents="none">
-                    <FontAwesome.Button right={-5} backgroundColor="transparent" size={22}
-                                        name="search"/>
-                </View>
-            </TouchableOpacity>
+            <SinglePhotoFull data={chosenPhoto} s={s} pressHandler={setFullScreenImage}/>
+            <FlatListGenerator {...{
+                picturesData,
+                s,
+                setFullScreenImage,
+                noMorePictures,
+                canGenerate,
+                loadMorePhotos,
+                secondsRemaining
+            }}/>
+            <SearchBoxGenerator {...{
+                showSearchBox,
+                s,
+                canGenerate,
+                secondsRemaining,
+                setTextInputValue,
+                textInputValue,
+                searchForPhotos
+            }} />
+            <SearchButtonGenerator {...{
+                showSearchBox,
+                s,
+                setShowSearchBox
+            }} />
         </View>
     );
 }

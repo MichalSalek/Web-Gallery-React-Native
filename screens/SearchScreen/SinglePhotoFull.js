@@ -21,7 +21,7 @@ export const SinglePhotoFull = ({data, s, pressHandler}) => {
         WebBrowser.openBrowserAsync(`https://www.instagram.com/${data.user.instagram_username}`)
     };
 
-    return (<View style={s.fullImageContainer}>
+    return (data && <View style={s.fullImageContainer}>
         <TouchableHighlight style={s.fullImageBox} onPress={() => pressHandler(null)}>
             <View>
                 <Text style={{

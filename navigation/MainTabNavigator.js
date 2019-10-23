@@ -4,8 +4,8 @@ import {Platform, Text} from 'react-native';
 import {createStackNavigator, createBottomTabNavigator} from 'react-navigation';
 
 // Screens
-import InfoScreen from '../screens/InfoScreen';
-import RandomScreen from '../screens/RandomScreen';
+import InfoScreen from '../screens/InfoScreen/InfoScreen';
+import RandomScreen from '../screens/RandomScreen/RandomScreen';
 import SearchScreen from '../screens/SearchScreen/SearchScreen';
 
 // Style
