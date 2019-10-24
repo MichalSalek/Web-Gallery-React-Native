@@ -1,7 +1,11 @@
-import {TouchableOpacity, View} from "react-native";
+// node_modules
 import React from "react";
 import {FontAwesome} from "@expo/vector-icons";
 
+// React native components
+import {TouchableOpacity, View} from "react-native";
+
+// Common
 import {commonStyles} from "../../common/Style";
 
 export const SearchButtonGenerator = ({

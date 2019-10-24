@@ -52,7 +52,7 @@ export const s = StyleSheet.create({
     },
     button: {
         position: 'absolute',
-        right: 0,
+        right: dimensions.window.width / 30,
         bottom: 11,
     },
     buttonText: {

@@ -1,7 +1,10 @@
+// node_modules
+import React, {useState, useEffect} from 'react';
+
+// React native components
+import {Platform, StatusBar, StyleSheet, View} from 'react-native';
 import {AppLoading} from 'expo';
 import {Asset} from 'expo-asset';
-import React, {useState, useEffect} from 'react';
-import {Platform, StatusBar, StyleSheet, View} from 'react-native';
 
 // Navigator
 import AppNavigator from './navigation/AppNavigator';

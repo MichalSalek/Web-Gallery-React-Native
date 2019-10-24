@@ -1,7 +1,11 @@
-import { Text, TouchableOpacity, View} from "react-native";
+// node_modules
 import React from "react";
 import {FontAwesome} from "@expo/vector-icons";
 
+// React native components
+import { Text, TouchableOpacity, View} from "react-native";
+
+// Style
 import {commonStyles} from "../../common/Style";
 
 export const RandomButtonGenerator = ({

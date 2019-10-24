@@ -16,9 +16,10 @@ export const s = StyleSheet.create({
     },
     button: {
         position: 'absolute',
-        right: 20,
-        bottom: 105,
-        opacity: 0.7
+        right: dimensions.window.width / 30,
+        bottom: 11,
+        opacity: 0.7,
+        zIndex: 2
     },
     buttonText: {
         color: colors.white,

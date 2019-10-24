@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Power Gallery",
-    "slug": "react-native-power-gallery",
+    "name": "Web Gallery",
+    "slug": "react-native-web-gallery",
     "privacy": "public",
     "sdkVersion": "35.0.0",
     "platforms": [
@@ -25,10 +25,10 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.michalsalek.powergallery"
+      "bundleIdentifier": "com.michalsalek.webgallery"
     },
     "android": {
-      "package": "com.michalsalek.powergallery"
+      "package": "com.michalsalek.webgallery"
     }
   }
 }

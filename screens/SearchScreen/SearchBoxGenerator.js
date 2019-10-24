@@ -1,6 +1,8 @@
-import {Text, TextInput, TouchableOpacity, View} from "react-native";
+// node_modules
 import React from "react";
 
+// React native components
+import {Text, TextInput, TouchableOpacity, View} from "react-native";
 
 export const SearchBoxGenerator = ({
                                        showSearchBox,

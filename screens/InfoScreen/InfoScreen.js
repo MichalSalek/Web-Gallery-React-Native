@@ -44,7 +44,7 @@ export default function RandomScreen() {
                 style={[s.bottomBar, {backgroundColor: coloredBarColorInverted}]}/>
             <View
                 style={[s.topBar, {backgroundColor: coloredBarColor}]}/>
-        </View>
+</View>
     );
 }
 

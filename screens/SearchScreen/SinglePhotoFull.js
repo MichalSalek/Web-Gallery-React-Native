@@ -1,12 +1,10 @@
 // node_modules
 import React from 'react';
+import {FontAwesome} from "@expo/vector-icons";
 
 // React native components
 import {Image, TouchableHighlight, View, Text, TouchableOpacity, ScrollView} from "react-native";
 import * as WebBrowser from 'expo-web-browser';
-
-// Icons
-import {FontAwesome} from "@expo/vector-icons";
 
 // Common
 import {commonStyles} from "../../common/Style";
@@ -55,6 +53,11 @@ export const SinglePhotoFull = ({data, s, pressHandler}) => {
                             <FontAwesome.Button right={-5} backgroundColor="transparent" size={28} name="instagram"/>
                         </View>
                     </TouchableOpacity>) : null}
+                <TouchableOpacity style={commonStyles.circleButton} onPress={() => pressHandler(null)}>
+                    <View pointerEvents="none">
+                        <FontAwesome.Button right={-5} backgroundColor="transparent" size={22} name="arrow-left"/>
+                    </View>
+                </TouchableOpacity>
             </View>
         </View>
     </View>)

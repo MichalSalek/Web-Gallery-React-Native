@@ -1,10 +1,15 @@
-import {FlatList, ScrollView, Text, TouchableOpacity, View} from "react-native";
+// node_modules
 import React from "react";
 
+// React native components
+import {FlatList, ScrollView, Text, TouchableOpacity, View} from "react-native";
+
+// Child
 import {SinglePhotoThumb} from "./SinglePhotoThumb";
 import colors from "../../common/Colors";
-import dimensions from "../../common/Layout";
 
+// Common
+import dimensions from "../../common/Layout";
 
 export const FlatListGenerator = ({
                                       picturesData,

@@ -1,5 +1,8 @@
-import {Image} from "react-native";
+// node_modules
 import React from "react";
+
+// React native components
+import {Image} from "react-native";
 
 
 export const BigPictureGenerator = ({
